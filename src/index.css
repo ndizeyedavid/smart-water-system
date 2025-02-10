@@ -1,0 +1,46 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* active links */
+.active {
+  @apply text-blue-600 bg-blue-50;
+}
+
+/* table */
+tr,
+td,
+th {
+  @apply text-center border border-black/50;
+}
+thead {
+  @apply bg-gray-200 text-black/90;
+}
+td {
+  padding: 5px;
+}
+
+/* nprogress */
+#nprogress .bar {
+  background: linear-gradient(to right, #ff416c, #ff4b2b) !important;
+  height: 4px !important;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1031;
+  box-shadow: 0 0 10px #ff416c, 0 0 5px #ff4b2b;
+}
+
+#spin {
+  animation: spinning 1s linear infinite;
+}
+
+@keyframes spinning {
+  0% {
+    rotate: 0deg;
+  }
+  100% {
+    rotate: 360deg;
+  }
+}
