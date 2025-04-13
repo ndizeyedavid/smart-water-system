@@ -11,7 +11,8 @@ pb.beforeSend = function(url, options) {
         ...options.headers,
         'Access-Control-Allow-Origin': '*',
         'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
-        'Access-Control-Allow-Headers': 'Content-Type, Authorization'
+        'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+        'ngrok-skip-browser-warning': '1'
     };
     return { url, options };
 };
