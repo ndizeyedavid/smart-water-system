@@ -3,6 +3,7 @@ import UsageChart from "../components/UsageChart"
 import Sidebar from '../components/Sidebar';
 import pb from '../utils/pocketbase';
 import { Zap } from 'lucide-react';
+import Prediction from '../components/Prediction';
 import Recommendation from '../components/Recommendation';
 
 export default function Dashboard() {
@@ -71,10 +72,10 @@ export default function Dashboard() {
             <Sidebar />
 
             {/* Main Content */}
-            <div className="flex-1 overflow-auto">
+            <div className="overflow-auto flex-1">
                 <div className="p-8">
                     <div className="space-y-6">
-                        <div className="min-h-screen p-8 bg-gradient-to-br from-blue-50 to-cyan-100">
+                        <div className="p-8 min-h-screen bg-gradient-to-br from-blue-50 to-cyan-100">
                             <div className="mx-auto max-w-7xl">
                                 <div className="mb-8">
                                     <h1 className="text-4xl font-bold text-blue-900">Smart Water Dashboard</h1>
@@ -85,8 +86,8 @@ export default function Dashboard() {
 
                                 <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
                                     {/* Current Usage Card */}
-                                    <div className="p-6 transition-all bg-white border-2 border-blue-200 shadow-lg rounded-2xl hover:border-blue-400">
-                                        <div className="flex items-center justify-between">
+                                    <div className="p-6 bg-white rounded-2xl border-2 border-blue-200 shadow-lg transition-all hover:border-blue-400">
+                                        <div className="flex justify-between items-center">
                                             <h2 className="text-xl font-semibold text-gray-800">Current Usage</h2>
                                             <div className="animate-pulse">
                                                 <div className="w-3 h-3 bg-blue-500 rounded-full"></div>
@@ -102,7 +103,7 @@ export default function Dashboard() {
                                     </div>
 
                                     {/* Prediction Card */}
-                                    <div className="p-6 transition-all bg-white border-2 border-purple-200 shadow-lg rounded-2xl hover:border-purple-400">
+                                    <div className="p-6 bg-white rounded-2xl border-2 border-purple-200 shadow-lg transition-all hover:border-purple-400">
                                         <h2 className="text-xl font-semibold text-gray-800">Recent Alerts</h2>
                                         <div className="mt-4">
                                             <span className="text-4xl font-bold text-purple-600">
@@ -114,7 +115,7 @@ export default function Dashboard() {
                                     </div>
 
                                     {/* Leakage Risk Card */}
-                                    <div className="p-6 transition-all bg-white border-2 border-green-200 shadow-lg rounded-2xl hover:border-green-400">
+                                    <div className="p-6 bg-white rounded-2xl border-2 border-green-200 shadow-lg transition-all hover:border-green-400">
                                         <h2 className="text-xl font-semibold text-gray-800">Leakage Risk</h2>
                                         <div className="mt-4">
                                             <span
@@ -128,15 +129,22 @@ export default function Dashboard() {
                                 </div>
 
                                 {/* Recommendations Section */}
-                                <div className="p-6 mt-8 bg-white shadow-lg rounded-2xl">
+                                <div className="p-6 mt-8 bg-white rounded-2xl shadow-lg">
                                     <h2 className="mb-4 text-2xl font-semibold text-gray-800">Recommendations</h2>
-
                                     {alerts != 0 ? <Recommendation /> : <div className='py-5 text-lg font-semibold text-center text-gray-500'>No Recommendations at this momment</div>}
+                                </div>
+
+                                {/* Usage graph */}
+                                <div className="p-6 mt-8 bg-white rounded-2xl shadow-lg">
+                                    {/* <h2 className="mb-4 text-2xl font-semibold text-gray-800">Recommendations</h2> */}
+
+                                    <Prediction usage={fullUsage} />
+                                    {/* {alerts != 0 ? <Recommendation /> : <div className='py-5 text-lg font-semibold text-center text-gray-500'>No Recommendations at this momment</div>} */}
 
                                 </div>
 
                                 {/* Usage Graph */}
-                                <div className="p-6 mt-8 bg-white shadow-lg rounded-2xl">
+                                <div className="p-6 mt-8 bg-white rounded-2xl shadow-lg">
                                     <h2 className="mb-4 text-2xl font-semibold text-gray-800">Usage Trends ({new Date().toDateString()})</h2>
                                     <div className="w-full h-[400px]">
                                         <UsageChart usage={fullUsage} />
